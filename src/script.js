@@ -242,7 +242,6 @@ function init() {
   }
 
   //
-  const cn = document.getElementById( 'canvas' ) ;
   renderer = new CSS3DRenderer();
   document.getElementById( 'container' ).appendChild( renderer.domElement );
   renderer.setSize( window.innerWidth, window.innerHeight );
