@@ -1,5 +1,6 @@
 # ismail ben alla links using 3d animation 
-it is my first 3d animation using three.js so it was fully inspired from Mr Takuya Matsuyama
+it is my first 3d animation using three.js so it was fully inspired from three js team 
+and xxxxxx
 
 ## Features
 
@@ -10,7 +11,7 @@ it is my first 3d animation using three.js so it was fully inspired from Mr Taku
 
 ## demo
 
-**To view the demo:** [**click here**](https://ahbari-m.github.io/ahbari-link-in-bio/)
+**To view the demo:** [**click here**](xxxxxxxxxxxxxxxxxxxx)
 
 ![pc](./demo/link-in-bio.gif)
 
@@ -20,7 +21,7 @@ From your command line :
 
 ```
 # Clone the repository
-$ git clone https://github.com/Ahbari-M/ahbari-link-in-bio.git
+$ git clone xxxxxxxxxxxxxxxxxxx
 
 # Move into the repository
 $ cd ahbari-link-in-bio
