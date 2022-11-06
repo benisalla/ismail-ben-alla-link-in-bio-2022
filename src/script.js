@@ -152,8 +152,6 @@ const table = [
   'javascript', 'JavaScript', '(294)'         , 19, 7
 ];
 
-console.log("size => "+table.length);
-
 let camera, scene, renderer;
 let controls;
 
