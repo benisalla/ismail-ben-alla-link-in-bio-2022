@@ -12,7 +12,7 @@ tl.to(".activator", {
 tl.to(
     "nav",
     {
-    clipPath: "ellipse(100% 100% at 50% 50%)",
+        clipPath: "ellipse(100% 100% at 50% 50%)",
     },
     "-=.5"
 );
@@ -22,7 +22,7 @@ tl.to(
         opacity: 1,
         transform: "translateX(0)",
         stagger: 0.05,
-        boxShadow: "none"
+        boxShadow: "none",
     },
     "-=.5"
 );

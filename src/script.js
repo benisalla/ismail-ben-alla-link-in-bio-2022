@@ -186,9 +186,20 @@ function init() {
     symbol.src = require("./images/logos/"+table[i]+".png");
     element.appendChild( symbol );
 
+    // const details = document.createElement( 'div' );
+    // details.className = 'details';
+    // details.innerHTML = table[ i + 1 ] + '<br>' + table[ i + 2 ];
+    // element.appendChild( details );
+
+    // const techName = document.createElement( 'div' );
+    // techName.className = 'details';
+    // techName.innerHTML = table[ i + 1 ];
+    // element.appendChild( techName );
+
     const details = document.createElement( 'div' );
-    details.className = 'details';
-    details.innerHTML = table[ i + 1 ] + '<br>' + table[ i + 2 ];
+    details.className = 'animated-progress progress-blue';
+    details.innerHTML = table[ i + 1 ]+"<span></span>";
+    details.lastChild.style.width = "50%";
     element.appendChild( details );
 
     const objectCSS = new CSS3DObject( element );
@@ -360,11 +371,9 @@ function animate() {
   TWEEN.update();
 
   controls.update();
-
 }
 
 function render() {
-
   renderer.render( scene, camera );
-
 }
+
