@@ -9,147 +9,147 @@ import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls
 import { CSS3DRenderer, CSS3DObject } from 'three/examples/jsm/renderers/CSS3DRenderer.js';
 
 const table = [
-  'docker', 'Docker', '1.00794'     , 1, 1,
-  'windows', 'Windows', '4.002602'  , 2, 1,
-  'linux', 'Linux', '6.941'         , 3, 1,
-  'github', 'Git-Hub', '9.012182'   , 4, 1,
-  'git', 'Git', '10.811'            , 5, 1,
+  'docker', 'Docker', '60'     , 1, 1,
+  'windows', 'Windows', '100'  , 2, 1,
+  'linux', 'Linux', '80'         , 3, 1,
+  'github', 'Git-Hub', '100'   , 4, 1,
+  'git', 'Git', '100'            , 5, 1,
 
-  'vs', 'Visual-Studio', '12.0107'     , 1, 2,
+  'vs', 'Visual-Studio', '90'     , 1, 2,
 
-  'pyCharm', 'PyCharm', '14.0067'      , 1, 3,
-  'eclipse', 'Eclipse', '15.9994'      , 2, 3,
-  'angular', 'Angular', '18.9984032'   , 3, 3,
-  'vuejs', 'VueJS', '20.1797'          , 4, 3,
-  'aspdotnet', 'ASP.net', '22.98976...', 5, 3,
+  'pyCharm', 'PyCharm', '90'      , 1, 3,
+  'eclipse', 'Eclipse', '90'      , 2, 3,
+  'angular', 'Angular', '40'   , 3, 3,
+  'vuejs', 'VueJS', '30'          , 4, 3,
+  'aspdotnet', 'ASP.net', '90', 5, 3,
 
-  'jee', 'JEE', '24.305', 1, 4,
+  'jee', 'JEE', '90', 1, 4,
 
-  'flask', 'Flask', '26.9815386'        , 1, 5,
-  'django', 'Django', '28.0855'         , 2, 5,
-  'symfony', 'Symfony', '30.973762'     , 3, 5,
-  'spring', 'Spring', '32.065'          , 4, 5,
-  'matlab', 'MatLab', '35.453'          , 5, 5,
+  'flask', 'Flask', '20'        , 1, 5,
+  'django', 'Django', '10'         , 2, 5,
+  'symfony', 'Symfony', '25'     , 3, 5,
+  'spring', 'Spring', '35'          , 4, 5,
+  'matlab', 'MatLab', '80'          , 5, 5,
 
-  'labview', 'LabView', '39.948'            , 7, 1,
-  'simulink', 'SimuLink', '39.948'          , 7, 2,
-  'arduino', 'Arduino', '40.078'            , 7, 3,
-  'hibernate', 'HiberNate', '44.955912'     , 7, 4,
-  'phonegap', 'Phone-Gap', '47.867'         , 7, 5,
+  'labview', 'LabView', '60'            , 7, 1,
+  'simulink', 'SimuLink', '50'          , 7, 2,
+  'arduino', 'Arduino', '20'            , 7, 3,
+  'hibernate', 'HiberNate', '30'     , 7, 4,
+  'phonegap', 'Phone-Gap', '6'         , 7, 5,
 
-  'nativescript', 'Native-Script', '50.9415', 8, 2,
+  'nativescript', 'Native-Script', '90', 8, 2,
 
-  'firebase', 'FireBase', '51.9961'         , 9, 3,
+  'firebase', 'FireBase', '30'         , 9, 3,
 
-  'adria', 'Adria', '54.938045'             , 10, 4,
+  'adria', 'Adria', '90'             , 10, 4,
 
-  'xml', 'XML', '55.845'                    , 11, 1,
-  'pascal', 'Pascal', '58.933195'           , 11, 2,
-  'scala', 'Scala', '58.6934'               , 11, 3,
-  'mongoDB', 'MongoDB', '63.546'            , 11, 4,
-  'mariaDB', 'MariaDB', '65.38'             , 11, 5,
+  'xml', 'XML', '90'                    , 11, 1,
+  'pascal', 'Pascal', '40'           , 11, 2,
+  'scala', 'Scala', '6'               , 11, 3,
+  'mongoDB', 'MongoDB', '8'            , 11, 4,
+  'mariaDB', 'MariaDB', '40'             , 11, 5,
 
-  'mockaroo', 'Mockaroo', '69.723'          , 13, 1,
-  'stackOverflow', 'Stack-OverFlow', '72.63', 14, 1,
-  'wordpress', 'WordPress', '74.9216'       , 15, 1,
-  'xampp', 'XAMPP', '78.96'                 , 16, 1,
-  'workbench', 'WorkBench', '79.904'        , 17, 1,
+  'mockaroo', 'Mockaroo', '90'          , 13, 1,
+  'stackOverflow', 'Stack-OverFlow', '90', 14, 1,
+  'wordpress', 'WordPress', '65'       , 15, 1,
+  'xampp', 'XAMPP', '90'                 , 16, 1,
+  'workbench', 'WorkBench', '90'        , 17, 1,
 
-  'canva', 'Canva', '83.798', 13, 2,
+  'canva', 'Canva', '90', 13, 2,
 
-  'ai', 'AI', '85.4678'                   , 13, 3,
-  'pandas', 'Pandas', '87.62'             , 14, 3,
-  'plotly', 'Plotly', '88.90585'          , 15, 3, 
-  'seaborn', 'SeaBorn', '91.224'          , 16, 3,
-  'matplotlib', 'MatPlotLib', '92.90628'  , 17, 3,
+  'ai', 'AI', '50'                   , 13, 3,
+  'pandas', 'Pandas', '57'             , 14, 3,
+  'plotly', 'Plotly', '60'          , 15, 3, 
+  'seaborn', 'SeaBorn', '8'          , 16, 3,
+  'matplotlib', 'MatPlotLib', '28'  , 17, 3,
 
-  'mircosoftCognitiveToolKit', 'Mircosoft CTK', '95.96', 17, 4,
+  'mircosoftCognitiveToolKit', 'Mircosoft CTK', '20', 17, 4,
 
-  'mxnet', 'MXnet', '(98)'            , 13, 5,
-  'scipy', 'Scipy', '101.07'          , 14, 5,
-  'tflearn', 'TFlearn', '102.9055'    , 15, 5,
-  'ONNX', 'ONNX', '106.42'            , 16, 5,
-  'perl', 'Perl', '107.8682'          , 17, 5,
+  'mxnet', 'MXnet', '5'            , 13, 5,
+  'scipy', 'Scipy', '7'          , 14, 5,
+  'tflearn', 'TFlearn', '32'    , 15, 5,
+  'ONNX', 'ONNX', '14'            , 16, 5,
+  'perl', 'Perl', '10'          , 17, 5,
 
-  'wolfram', 'Wolfram', '112.411'             , 9, 6,
+  'wolfram', 'Wolfram', '11'             , 9, 6,
 
-  'openNN', 'openNN', '114.818'               , 8, 7,
-  'autoML', 'auto-ML', '118.71'               , 9, 7,
-  'beautifulsoup', 'Beautiful-Soup', '121.76' , 10, 7,
+  'openNN', 'openNN', '18'               , 8, 7,
+  'autoML', 'auto-ML', '41'               , 9, 7,
+  'beautifulsoup', 'Beautiful-Soup', '16' , 10, 7,
 
-  'scrapy', 'ScraPy', '127.6'                 , 7, 8,
-  'pyCaret', 'PyCaret', '126.90447'           , 8, 8,
-  'h2o', 'H2O', '131.293'                     , 9, 8,
-  'tibco', 'Tibco', '132.9054'                , 10, 8,
-  'rapidminer', 'Rapid-Miner', '132.9054'     , 11, 8,
+  'scrapy', 'ScraPy', '50'                 , 7, 8,
+  'pyCaret', 'PyCaret', '20'           , 8, 8,
+  'h2o', 'H2O', '10'                     , 9, 8,
+  'tibco', 'Tibco', '10'                , 10, 8,
+  'rapidminer', 'Rapid-Miner', '5'     , 11, 8,
 
-  'sas', 'SAS', '138.90547'                   , 6, 9,
-  'datarobot', 'Data-Robot', '140.116'        , 7, 9,
-  'knime', 'Knime', '140.90765'               , 8, 9,
-  'bottle', 'Bottle', '144.242'               , 9, 9,
-  'cherrypy', 'CherryPy', '(145)'             , 10, 9,
-  'dash', 'Dash', '150.36'                    , 11, 9,
-  'tornado', 'Tornado', '151.964'             , 12, 9,
+  'sas', 'SAS', '8'                   , 6, 9,
+  'datarobot', 'Data-Robot', '6'        , 7, 9,
+  'knime', 'Knime', '15'               , 8, 9,
+  'bottle', 'Bottle', '12'               , 9, 9,
+  'cherrypy', 'CherryPy', '15'             , 10, 9,
+  'dash', 'Dash', '16'                    , 11, 9,
+  'tornado', 'Tornado', '15'             , 12, 9,
 
-  'fastAPI', 'Fast-API', '157.25'             , 5, 10,
-  'd3', 'D3', '158.92535'                     , 6, 10,
-  'animejs', 'ANIMEjs', '162.5'               , 7, 10,
-  'backbonejs', 'BACKBONEjs', '164.93032'     , 8, 10,
-  'nodejs', 'NODEjs', '167.259'               , 9, 10,
-  'nextjs', 'NEXTjs', '168.93421'             , 10, 10,
-  'solidity', 'Solidity', '173.054'           , 11, 10,
-  'oracle', 'Oracle', '174.9668'              , 12, 10,
-  'uml', 'UML', '178.49'                      , 13, 10,
+  'fastAPI', 'Fast-API', '25'             , 5, 10,
+  'd3', 'D3', '15'                     , 6, 10,
+  'animejs', 'ANIMEjs', '65'               , 7, 10,
+  'backbonejs', 'BACKBONEjs', '32'     , 8, 10,
+  'nodejs', 'NODEjs', '69'               , 9, 10,
+  'nextjs', 'NEXTjs', '80'             , 10, 10,
+  'solidity', 'Solidity', '54'           , 11, 10,
+  'oracle', 'Oracle', '90'              , 12, 10,
+  'uml', 'UML', '90'                      , 13, 10,
 
-  'mysql', 'MySQL', '180.94788'               , 4, 11,
-  'merise', 'MERISE', '183.84'                , 5, 11,
-  'python', 'Python', '186.207'               , 6, 11,
-  'pyTorch', 'PyTorch', '190.23'              , 7, 11,
-  'numpy', 'NumPy', '192.217'                 , 8, 11,
-  'scikitLearn', 'ScikitLearn', '195.084'     , 9, 11,
-  'tensorFlow', 'TensorFlow', '196.966569'    , 10, 11,
-  'keras', 'Keras', '200.59'                  , 11, 11,
-  'R', 'R', '204.3833'                        , 12, 11,
-  'openCV', 'openCV', '207.2'                 , 13, 11,
-  'caffe', 'Caffe', '208.9804'                , 14, 11,
+  'mysql', 'MySQL', '90'               , 4, 11,
+  'merise', 'MERISE', '90'                , 5, 11,
+  'python', 'Python', '90'               , 6, 11,
+  'pyTorch', 'PyTorch', '70'              , 7, 11,
+  'numpy', 'NumPy', '90'                 , 8, 11,
+  'scikitLearn', 'ScikitLearn', '54'     , 9, 11,
+  'tensorFlow', 'TensorFlow', '69'    , 10, 11,
+  'keras', 'Keras', '59'                  , 11, 11,
+  'R', 'R', '13'                        , 12, 11,
+  'openCV', 'openCV', '80'                 , 13, 11,
+  'caffe', 'Caffe', '80'                , 14, 11,
   
-  'torch', 'Torch', '(210)'                   , 1, 7,
-  'cntk', 'Cntk', '(222)'                     , 2, 7,
-  'spark', 'Spark', '(223)'                   , 3, 7,
-  'weka', 'Weka', '(226)'                     , 4, 7,
-  'sparkMllib', 'SparkMllib', '(227)'         , 5, 7,
-  'mlPack', 'MLPack', '232.03806'             , 1, 8,
-  'Jax', 'Jax', '231.0588'                    , 2, 8,
-  'paddlepaddle', 'Paddle-Paddle', '238.02891', 3, 8,
-  'ajax', 'AJAX', '(237)'                     , 4, 8,
-  'Tailwind', 'Tailwind', '(244)'             , 1, 9,
-  'bootstrap', 'Bootstrap', '(243)'           , 2, 9,
-  'css', 'CSS', '(247)'                       , 3, 9,
-  'html', 'HTML', '(247)'                     , 1, 10,
-  'swift', 'Swift', '(251)'                   , 2, 10,
-  'Cordova', 'Cordova', '(252)'               , 1, 11,
+  'torch', 'Torch', '25'                   , 1, 7,
+  'cntk', 'Cntk', '7'                     , 2, 7,
+  'spark', 'Spark', '8'                   , 3, 7,
+  'weka', 'Weka', '6'                     , 4, 7,
+  'sparkMllib', 'SparkMllib', '7'         , 5, 7,
+  'mlPack', 'MLPack', '13'             , 1, 8,
+  'Jax', 'Jax', '18'                    , 2, 8,
+  'paddlepaddle', 'Paddle-Paddle', '11', 3, 8,
+  'ajax', 'AJAX', '90'                     , 4, 8,
+  'Tailwind', 'Tailwind', '90'             , 1, 9,
+  'bootstrap', 'Bootstrap', '90'           , 2, 9,
+  'css', 'CSS', '90'                       , 3, 9,
+  'html', 'HTML', '90'                     , 1, 10,
+  'swift', 'Swift', '5'                   , 2, 10,
+  'Cordova', 'Cordova', '40'               , 1, 11,
   
-  'ionic', 'ionic', '(257)'                   , 13, 7,
-  'xamarin', 'Xamarin', '(258)'               , 14, 7,
-  'flutter', 'Flutter', '(259)'               , 15, 7,
-  'reactNative', 'React-Native', '(262)'      , 16, 7,
-  'android', 'Android', '(267)'               , 17, 7,
-  'kotlin', 'Kotlin', '(268)'                 , 14, 8,
-  'java', 'Java', '(271)'                     , 15, 8,
-  'laravel', 'Laravel', '(272)'               , 16, 8,
-  'mvc', 'MVC', '(270)'                       , 17, 8,
-  'php', 'PHP', '(276)'                       , 15, 9,
-  'dotnet', '.net', '(281)'                   , 16, 9,
-  'Csharp', 'C#', '(280)'                     , 17, 9,
-  'cpp', 'C++', '(285)'                       , 16, 10,
-  'c', 'c', '(286)'                           , 17, 10,
-  'react', 'ReactJS', '(289)'                  , 17, 11,
+  'ionic', 'ionic', '50'                   , 13, 7,
+  'xamarin', 'Xamarin', '30'               , 14, 7,
+  'flutter', 'Flutter', '90'               , 15, 7,
+  'reactNative', 'React-Native', '90'      , 16, 7,
+  'android', 'Android', '90'               , 17, 7,
+  'kotlin', 'Kotlin', '90'                 , 14, 8,
+  'java', 'Java', '90'                     , 15, 8,
+  'laravel', 'Laravel', '90'               , 16, 8,
+  'mvc', 'MVC', '90'                       , 17, 8,
+  'php', 'PHP', '90'                       , 15, 9,
+  'dotnet', '.net', '90'                   , 16, 9,
+  'Csharp', 'C#', '90'                     , 17, 9,
+  'cpp', 'C++', '90'                       , 16, 10,
+  'c', 'c', '90'                           , 17, 10,
+  'react', 'ReactJS', '90'                  , 17, 11,
 
-  'theano', 'Theano', '(209)'                 , 19, 5,
-  'threejs', 'ThreeJS', '(290)'               , 18, 6,
-  'gsap', 'Gsap', '(293)'                     , 19, 6,
-  'jquery', 'Jquery', '(294)'                 , 20, 6,
-  'javascript', 'JavaScript', '(294)'         , 19, 7
+  'theano', 'Theano', '10'                 , 19, 5,
+  'threejs', 'ThreeJS', '80'               , 18, 6,
+  'gsap', 'Gsap', '80'                     , 19, 6,
+  'jquery', 'Jquery', '90'                 , 20, 6,
+  'javascript', 'JavaScript', '90'         , 19, 7
 ];
 
 let camera, scene, renderer;
@@ -186,20 +186,16 @@ function init() {
     symbol.src = require("./images/logos/"+table[i]+".png");
     element.appendChild( symbol );
 
-    // const details = document.createElement( 'div' );
-    // details.className = 'details';
-    // details.innerHTML = table[ i + 1 ] + '<br>' + table[ i + 2 ];
-    // element.appendChild( details );
-
-    // const techName = document.createElement( 'div' );
-    // techName.className = 'details';
-    // techName.innerHTML = table[ i + 1 ];
-    // element.appendChild( techName );
-
     const details = document.createElement( 'div' );
-    details.className = 'animated-progress progress-blue';
+    details.className = 'animated-progress';
     details.innerHTML = table[ i + 1 ]+"<span></span>";
-    details.lastChild.style.width = "50%";
+    details.lastChild.style.width = table[ i + 2 ]+"%";
+    if(table[i + 2] > 60)
+      details.lastChild.style.backgroundColor = "#0f0";
+    else if(table[i + 2] > 40 && table[i + 2] <= 60)
+      details.lastChild.style.backgroundColor = "#00f";
+    else
+      details.lastChild.style.backgroundColor = "#f00";
     element.appendChild( details );
 
     const objectCSS = new CSS3DObject( element );

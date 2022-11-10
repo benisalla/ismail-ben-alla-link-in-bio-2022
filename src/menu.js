@@ -32,3 +32,9 @@ card.addEventListener("click", () => {
     toggle = !toggle;
     if (toggle ? tl.play() : tl.reverse());
 });
+
+document.getElementById("full-screen").addEventListener('click', ()=>{
+    document.querySelectorAll(".ClearScreenTarget").forEach( element => {
+        element.classList.toggle("not-working")
+    })
+});

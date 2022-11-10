@@ -1,27 +1,26 @@
-# ismail ben alla links using 3d animation 
-it is my first 3d animation using three.js so it was fully inspired from three js team 
-and xxxxxx
+# ismail ben alla links using 3d animation
+it is my first 3d animation using three.js so it was fully inspired from [**Three.js**](https://threejs.org/) team. 
 
-## Features
+## Features Used in My Link-Bio
 
-- Modern UI Design
-- 3d animation using three.js
-- Webpack as a module bundler
-- Fully Responsive
+- 3d animation using three.js.
+- module bundler as a Webpack.
+- dynamic and modern js and style.
+- Responsive.
 
-## demo
+## Demo Of Link-Bio
 
-**To view the demo:** [**click here**](xxxxxxxxxxxxxxxxxxxx)
+**To watch the demo:** [**click here**](xxxxxxxxxxxxxxxxxxxx)
 
 ![pc](./demo/link-in-bio.gif)
 
-## How To Use
+## in case you want to use it
 
 From your command line :
 
 ```
 # Clone the repository
-$ git clone xxxxxxxxxxxxxxxxxxx
+$ git clone https://github.com/benisalla/link-in-bio-ismail-ben-alla-link-in-bio-2022.git
 
 # Move into the repository
 $ cd ahbari-link-in-bio
