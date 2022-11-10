@@ -10,7 +10,7 @@ it is my first 3d animation using three.js so it was fully inspired from [**Thre
 
 ## Demo Of Link-Bio
 
-**To watch the demo:** [**click here**](xxxxxxxxxxxxxxxxxxxx)
+**To watch the demo:** [**click here**](/src/images/ismail_ben_alla.mp4)
 
 ![pc](./demo/link-in-bio.gif)
 
@@ -23,7 +23,7 @@ From your command line :
 $ git clone https://github.com/benisalla/link-in-bio-ismail-ben-alla-link-in-bio-2022.git
 
 # Move into the repository
-$ cd ahbari-link-in-bio
+$ cd link-in-bio-ismail-ben-alla-link-in-bio-2022
 ```
 
 ## Setup
