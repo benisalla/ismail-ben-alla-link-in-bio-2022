@@ -12,7 +12,7 @@ it is my first 3d animation using three.js so it was fully inspired from [**Thre
 
 **To watch the demo:** [**click here**](/src/images/ismail_ben_alla.mp4)
 
-![pc](./demo/link-in-bio.gif)
+<video src="/src/images/ismail_ben_alla.mp4" height="55px" width="55px">
 
 ## in case you want to use it
 
