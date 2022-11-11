@@ -10,9 +10,22 @@ it is my first 3d animation using three.js so it was fully inspired from [**Thre
 
 ## Demo Of Link-Bio
 
+<<<<<<< HEAD
 **To watch the demo:** [**click here**] (https://www.google.com/)
 
+<<<<<<< HEAD
 [<img alt="alt_text" width="40px" src="images/image.PNG" />] (https://www.google.com/)
+=======
+<h1 align="center">
+    <img src="/src/images/ismailbenalla.gif" height="55px" width="55px">
+=======
+**To watch the demo:** [**click here**](https://github.com/benisalla/link-in-bio-ismail-ben-alla-link-in-bio-2022/tree/master/src/images/ismail_ben_alla.mp4)
+
+<h1 align="center">Demo-Demo
+    <img src="https://github.com/benisalla/link-in-bio-ismail-ben-alla-link-in-bio-2022/tree/master/src/images/ismailbenalla.gif" height="55px" width="55px">
+>>>>>>> 19888c2 (......)
+</h1>
+>>>>>>> 47fadba (....)
 
 ## in case you want to use it
 
