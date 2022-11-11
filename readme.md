@@ -48,4 +48,4 @@ and i am possessed by AI ML DL and how they work, i am a beginner in mobile deve
 ⛵ AI enthusiast | Contributor at [Jeef]()</br>
 ✅ optimist and hardworker</br>
 🌱 Learning advanced react and laravel concept</br>
-😄 I LOVE MY WHAT I AM DOING</br>
+😄 I LOVE WHAT I AM DOING</br>
