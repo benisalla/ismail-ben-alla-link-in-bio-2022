@@ -48,7 +48,7 @@ npm run build
 
 <p align="left"> <a href="https://twitter.com/ismail_ben_alla" target="blank"><img src="https://img.shields.io/twitter/follow/ismail_ben_alla?logo=twitter&style=for-the-badge" alt="ismail_ben_alla" /></a> </p>
 
-- 🔭 I working on a react project [BAI-Product](not available yet)
+- 🔭 I'm working on a react project [BAI-Product](not available yet)
 
 - 🌱 I’m currently learning **React, React-native, asp.net, Laravel, Android**
 
