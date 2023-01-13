@@ -3,6 +3,9 @@
 it is my first 3d animation using three.js so it was fully inspired from [Three.js](https://threejs.org/) team. 
 </h3>
 
+
+<p align="left"> <img src="https://komarev.com/ghpvc/?username=benisalla&label=Profile%20views&color=0e75b6&style=flat" alt="benisalla" /> </p>
+
 ## Features Used in My Link-Bio
 
 - 3d animation using three.js.
@@ -42,8 +45,6 @@ npm run dev
 # Build for production in the dist/ directory
 npm run build
 ```
-
-<p align="left"> <img src="https://komarev.com/ghpvc/?username=benisalla&label=Profile%20views&color=0e75b6&style=flat" alt="benisalla" /> </p>
 
 <p align="left"> <a href="https://twitter.com/ismail_ben_alla" target="blank"><img src="https://img.shields.io/twitter/follow/ismail_ben_alla?logo=twitter&style=for-the-badge" alt="ismail_ben_alla" /></a> </p>
 
