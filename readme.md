@@ -1,5 +1,5 @@
 # ismail ben alla links using 3d animation
-it is my first 3d animation using three.js so it was fully inspired from [Three.js] (https://threejs.org/) team. 
+it is my first 3d animation using three.js so it was fully inspired from [Three.js](https://threejs.org/) team. 
 
 ## Features Used in My Link-Bio
 
@@ -12,7 +12,7 @@ it is my first 3d animation using three.js so it was fully inspired from [Three.
 
 https://user-images.githubusercontent.com/89405673/212336989-ddeb6de8-0f9d-4b18-a3ec-04020e6e0891.mp4
 
-**To watch the real the demo:** [click here] (https://benisalla.github.io/ismail-ben-alla-link-bio/)
+**To watch the real the demo:** [click here](https://benisalla.github.io/ismail-ben-alla-link-bio/)
 
 ## in case you want to use it
 
