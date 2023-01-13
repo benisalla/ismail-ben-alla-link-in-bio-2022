@@ -10,12 +10,9 @@ it is my first 3d animation using three.js so it was fully inspired from [**Thre
 
 ## Demo Of Link-Bio
 
-**To watch the demo:** [**click here**] (https://www.google.com/)
 
 
-[<img alt="alt_text" width="40px" src="images/image.PNG" />] (https://www.google.com/)
-</h1>
->>>>>>> 47fadba (....)
+**To watch the real the demo:** [**click here**] (https://benisalla.github.io/ismail-ben-alla-link-bio/)
 
 ## in case you want to use it
 
@@ -47,8 +44,8 @@ npm run build
 
 ## About Me 🚀
 🎓 I’m ismail ben alla, i am really into 3d animations and dynamic content in web development,
-and i am possessed by AI ML DL and how they work, i am a beginner in mobile development as well. </br>
-⛵ AI enthusiast | Contributor at [Jeef]()</br>
-✅ optimist and hardworker</br>
-🌱 Learning advanced react and laravel concept</br>
+and i am possessed by AI, ML, DL and how they work, i am a beginner in mobile development as well. </br>
+⛵ AI enthusiast | Contributor at [Jeef] official website()</br>
+✅ optimist and hardworker </br>
+🌱 Learning advanced computer science technologies</br>
 😄 I LOVE WHAT I AM DOING</br>
