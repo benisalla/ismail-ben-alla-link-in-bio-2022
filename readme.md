@@ -10,7 +10,7 @@ it is my first 3d animation using three.js so it was fully inspired from [**Thre
 
 ## Demo Of Link-Bio
 
-https://user-images.githubusercontent.com/89405673/212336335-570687e5-f7ef-4df3-a1d5-3b7ef607f159.mp4
+https://user-images.githubusercontent.com/89405673/212336989-ddeb6de8-0f9d-4b18-a3ec-04020e6e0891.mp4
 
 **To watch the real the demo:** [**click here**] (https://benisalla.github.io/ismail-ben-alla-link-bio/)
 
