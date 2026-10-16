@@ -29,11 +29,8 @@
 
 ## ✨ Features
 
-- **Instant on every device.** The profile card is plain HTML with inlined CSS, so it paints on the first round trip. A phone downloads about **28 KB** in total.
-- **3D tech stack, without the cost.** 45 technologies are shown as a periodic table you can morph into a **sphere, helix or grid** and rotate with the mouse. Built with `CSS3DRenderer` from Three.js.
-  - On desktop it loads after the page is idle.
-  - On phones it loads only when you tap **Explore 3D**.
-  - It is skipped entirely with *reduced motion* or *data saver* turned on.
+- **Instant on every device.** The profile card is plain HTML with inlined CSS, so it paints on the first round trip: the links are visible after only about **28 KB**.
+- **3D tech stack animation on every device.** 45 technologies are shown as a periodic table that morphs into a **sphere, helix or grid** and rotates with the mouse. Built with `CSS3DRenderer` from Three.js. It loads right after the links appear, so it never slows them down.
 - **Responsive.** Tested from 360 px Android phones to wide desktop screens, in portrait and landscape, with safe-area support for notched phones.
 - **Good link previews.** Open Graph and Twitter Card tags plus a 1200×630 preview image, so the link looks right on LinkedIn, X, WhatsApp, Slack and Discord. Also includes JSON-LD `Person` data for search engines.
 - **Accessible.** Semantic HTML, keyboard focus styles, 44 px+ touch targets, and labels on every icon button.
@@ -74,7 +71,7 @@ npm run preview   # serve the production build, http://localhost:4173
 ```
 ├── index.html            # the page: card, links, SEO / social meta tags
 ├── src/
-│   ├── main.js           # tiny entry: explore button + lazy-loads the 3D scene
+│   ├── main.js           # tiny entry: explore button + loads the 3D scene after the page
 │   ├── scene.js          # Three.js CSS3D scene, layouts, controls, render-on-demand loop
 │   ├── stack.js          # the technologies shown as 3D tiles
 │   └── style.css         # all styles (inlined into index.html at build time)
@@ -97,7 +94,7 @@ The 2022 version shipped ~14 MB on first load: 150 full-size PNG logos (some 700
 
 | | 2022 | Now |
 |---|---|---|
-| First load (phone) | ~14 MB | **~28 KB** |
+| Downloaded before the links are visible | ~14 MB | **~28 KB** |
 | Requests before the links are visible | 150+ | **3** |
 | Lighthouse performance (mobile) | low | **100** |
 | Repository size (tracked files) | ~145 MB incl. `node_modules` | **< 300 KB** |

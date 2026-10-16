@@ -116,7 +116,8 @@ export function startScene(container, toolbar) {
     const halfW = (COLS * CELL_W) / 2 + 80
     const halfH = (Math.ceil(objects.length / COLS) * CELL_H) / 2 + 80
     const distance = Math.max(halfW / (tan * camera.aspect), halfH / tan)
-    camera.position.setLength(Math.min(Math.max(distance, 1800), 6000))
+    // Portrait phones: come closer and let the table overflow the sides, so the tiles stay big
+    camera.position.setLength(Math.min(Math.max(distance, 1800), camera.aspect < 1 ? 3000 : 6000))
     camera.updateProjectionMatrix()
     renderer.setSize(w, h)
     controls?.handleResize()
