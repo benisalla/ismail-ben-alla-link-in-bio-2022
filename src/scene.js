@@ -5,7 +5,8 @@
 //   projects built with it, topped with a roof. Click a floor to open it.
 // Loaded lazily by main.js after the links are on screen.
 import {
-  CanvasTexture, Color, DirectionalLight, DoubleSide, ExtrudeGeometry, HemisphereLight, MathUtils, Mesh,
+  CanvasTexture, Color, DirectionalLight, DoubleSide, ExtrudeGeometry, HemisphereLight, InstancedBufferAttribute,
+  InstancedMesh, MathUtils, Mesh,
   MeshBasicMaterial, MeshStandardMaterial, Object3D, PerspectiveCamera, PlaneGeometry, BoxGeometry, Raycaster,
   Scene, Shape, SRGBColorSpace, Vector2, Vector3, WebGLRenderer, Group,
 } from 'three'
@@ -16,7 +17,7 @@ import { stack } from './stack.js'
 const TILE_W = 120
 const TILE_H = 150
 const PAD = 14 // room for the glow drawn around each tile
-const COLS = 11
+const COLS = 13
 const CELL_W = 140
 const CELL_H = 180
 const LAYOUTS = ['table', 'sphere', 'helix', 'grid']
@@ -67,23 +68,59 @@ export async function startScene(container, toolbar) {
   document.body.appendChild(tip)
 
   // ---------- Tiles ----------
-  // All tiles are drawn into one atlas texture and share one material, so the GPU
-  // setup happens once instead of 33 times. Faded tiles (behind a house) share a second one.
+  // Every tile is drawn into one atlas texture and rendered by a single InstancedMesh:
+  // one draw call no matter how many technologies there are.
+  // Each tile is driven by a lightweight Object3D (a "proxy") that layouts and hover animate;
+  // every frame the proxies are copied into the instances, sorted back to front.
   await nextFrame()
   const atlas = drawAtlas(stack)
   await nextFrame()
-  const tileMaterial = new MeshBasicMaterial({ map: atlas.texture, transparent: true, side: DoubleSide, depthWrite: false })
-  const fadedMaterial = tileMaterial.clone()
+  const n = stack.length
+  const tileGeometry = new PlaneGeometry(TILE_W + 2 * PAD, TILE_H + 2 * PAD)
+  const uvRects = new InstancedBufferAttribute(new Float32Array(n * 4), 4)
+  const opacities = new InstancedBufferAttribute(new Float32Array(n), 1)
+  tileGeometry.setAttribute('uvRect', uvRects)
+  tileGeometry.setAttribute('instOpacity', opacities)
+  const tileMesh = new InstancedMesh(tileGeometry, tileMaterialFor(atlas.texture), n)
+  tileMesh.frustumCulled = false
+  scene.add(tileMesh)
+
+  const fade = { value: 1 } // opacity of the tiles behind an open house
+  const slotToTile = new Int32Array(n)
+  const depthOrder = Array.from({ length: n }, (_, i) => ({ i, z: 0 }))
+  const tmp = new Vector3()
+
   const tiles = stack.map((item, i) => {
-    const mesh = new Mesh(atlas.geometry(i), tileMaterial)
-    const holder = new Object3D() // layouts move the holder; hover moves the mesh inside it
-    holder.add(mesh)
+    const proxy = new Object3D()
+    const holder = new Object3D() // layouts move the holder; hover moves the proxy inside it
+    holder.add(proxy)
     holder.position.set(Math.random() * 4000 - 2000, Math.random() * 4000 - 2000, Math.random() * 4000 - 2000)
-    mesh.userData = { kind: 'tile', item, holder }
-    scene.add(holder)
-    return mesh
+    proxy.userData = { kind: 'tile', item, holder, index: i, faded: false }
+    return proxy
   })
   const targets = buildTargets(tiles.length)
+
+  function syncTiles() {
+    camera.updateMatrixWorld()
+    for (const d of depthOrder) {
+      const t = tiles[d.i]
+      t.userData.holder.updateMatrixWorld(true)
+      d.z = tmp.setFromMatrixPosition(t.matrixWorld).applyMatrix4(camera.matrixWorldInverse).z
+    }
+    depthOrder.sort((a, b) => a.z - b.z) // farthest first, so transparent edges blend correctly
+    depthOrder.forEach((d, slot) => {
+      const t = tiles[d.i]
+      slotToTile[slot] = d.i
+      tileMesh.setMatrixAt(slot, t.matrixWorld)
+      const [u, v, su, sv] = atlas.rect(d.i)
+      uvRects.setXYZW(slot, u, v, su, sv)
+      opacities.setX(slot, t.visible ? (t.userData.faded ? fade.value : 1) : 0)
+    })
+    tileMesh.instanceMatrix.needsUpdate = true
+    uvRects.needsUpdate = true
+    opacities.needsUpdate = true
+    tileMesh.computeBoundingSphere()
+  }
 
   // ---------- Render loop: runs only while something moves ----------
   let frame = 0
@@ -99,6 +136,7 @@ export async function startScene(container, toolbar) {
   function loop(time) {
     tweens.update(time)
     controls.update()
+    syncTiles()
     if (needsPick || mouseInside) pick()
     renderer.render(scene, camera)
     const busy = !tweens.allStopped() || time - lastChange < 1000
@@ -188,8 +226,12 @@ export async function startScene(container, toolbar) {
   function hit() {
     raycaster.setFromCamera(pointer, camera)
     // In a house only the floors are interactive; the faded tiles are just scenery
-    const found = raycaster.intersectObjects(house ? house.floors : tiles, false)
-    return found.find((f) => f.object.userData.kind === 'floor' || (f.object.visible && f.object.material === tileMaterial))?.object ?? null
+    if (house) return raycaster.intersectObjects(house.floors, false)[0]?.object ?? null
+    for (const f of raycaster.intersectObject(tileMesh, false)) {
+      const t = tiles[slotToTile[f.instanceId]]
+      if (t.visible && !t.userData.faded) return t
+    }
+    return null
   }
 
   function pick() {
@@ -258,10 +300,10 @@ export async function startScene(container, toolbar) {
   let sway = null
   const view = { x: 0, y: 0 } // camera view offset, so the house is not hidden behind the panel
 
-  function openHouse(tileMesh) {
+  function openHouse(clicked) {
     stopAutoCycle()
     if (house) disposeHouse()
-    const { item } = tileMesh.userData
+    const { item } = clicked.userData
     const color = item.color
     const group = new Group()
     const floors = []
@@ -313,13 +355,13 @@ export async function startScene(container, toolbar) {
     // Other tiles drift away and fade; the clicked one dives into the foundation
     const away = tiles.flatMap((mesh, i) => {
       const { holder } = mesh.userData
-      if (mesh === tileMesh) {
+      if (mesh === clicked) {
         return [
           new Tween(holder.position).to({ x: 0, y: bottom + BASE_H / 2, z: FLOOR_D / 2 }, 600).easing(Easing.Cubic.In).onComplete(() => (mesh.visible = false)),
           new Tween(holder.rotation).to({ x: 0, y: 0, z: 0 }, 600),
         ]
       }
-      mesh.material = fadedMaterial
+      mesh.userData.faded = true
       const t = targets.sphere[i]
       return [
         new Tween(holder.position).to({ x: t.position.x * 3, y: t.position.y * 3, z: t.position.z * 3 - 1500 }, 1200).easing(Easing.Cubic.InOut),
@@ -327,7 +369,7 @@ export async function startScene(container, toolbar) {
       ]
     })
     run('tiles', ...away)
-    run('fade', new Tween(fadedMaterial).to({ opacity: 0.18 }, 800))
+    run('fade', new Tween(fade).to({ value: 0.18 }, 800))
     if (hovered) liftOff(hovered)
     hovered = null
     tip.hidden = true
@@ -399,7 +441,7 @@ export async function startScene(container, toolbar) {
     tiles.forEach((m) => (m.visible = true))
     run(
       'fade',
-      new Tween(fadedMaterial).to({ opacity: 1 }, 900).onComplete(() => tiles.forEach((m) => (m.material = tileMaterial))),
+      new Tween(fade).to({ value: 1 }, 900).onComplete(() => tiles.forEach((m) => (m.userData.faded = false))),
     )
     transform(current, 1200)
     run(
@@ -499,6 +541,23 @@ export async function startScene(container, toolbar) {
 
 // ---------- Geometry helpers ----------
 
+// MeshBasicMaterial that reads each instance's atlas rectangle and opacity
+function tileMaterialFor(map) {
+  const material = new MeshBasicMaterial({ map, transparent: true, side: DoubleSide, depthWrite: false })
+  material.onBeforeCompile = (shader) => {
+    shader.vertexShader =
+      'attribute vec4 uvRect;\nattribute float instOpacity;\nvarying float vInstOpacity;\n' +
+      shader.vertexShader.replace(
+        '#include <uv_vertex>',
+        '#include <uv_vertex>\n\tvMapUv = uvRect.xy + vMapUv * uvRect.zw;\n\tvInstOpacity = instOpacity;',
+      )
+    shader.fragmentShader =
+      'varying float vInstOpacity;\n' +
+      shader.fragmentShader.replace('vec4 diffuseColor = vec4( diffuse, opacity );', 'vec4 diffuseColor = vec4( diffuse, opacity * vInstOpacity );')
+  }
+  return material
+}
+
 function box(w, h, d, sideColor, frontTexture) {
   const side = new MeshStandardMaterial({ color: sideColor, roughness: 0.55, metalness: 0.05 })
   const front = new MeshBasicMaterial({ map: frontTexture })
@@ -552,21 +611,21 @@ function buildTargets(count) {
     const phi = Math.acos(-1 + (2 * i) / count)
     const theta = Math.sqrt(count * Math.PI) * phi
     const sphere = new Object3D()
-    sphere.position.setFromSphericalCoords(650, phi, theta)
+    sphere.position.setFromSphericalCoords(820, phi, theta)
     sphere.lookAt(v.copy(sphere.position).multiplyScalar(2))
     targets.sphere.push(sphere)
 
     // Helix
     const helix = new Object3D()
-    helix.position.setFromCylindricalCoords(750, i * 0.4 + Math.PI, -(i * 28) + 460)
+    helix.position.setFromCylindricalCoords(860, i * 0.33 + Math.PI, -(i * 17) + (count * 17) / 2)
     helix.lookAt(v.set(helix.position.x * 2, helix.position.y, helix.position.z * 2))
     targets.helix.push(helix)
 
-    // Grid: 4x3 layers stacked in depth
+    // Grid: 5x4 layers stacked in depth
     const grid = new Object3D()
-    grid.position.x = (i % 4) * 340 - 510
-    grid.position.y = -(Math.floor(i / 4) % 3) * 360 + 360
-    grid.position.z = Math.floor(i / 12) * 800 - 800
+    grid.position.x = (i % 5) * 320 - 640
+    grid.position.y = -(Math.floor(i / 5) % 4) * 340 + 510
+    grid.position.z = Math.floor(i / 20) * 700 - 1050
     targets.grid.push(grid)
   }
 
@@ -602,15 +661,14 @@ function drawIcon(ctx, item, cx, cy, size) {
     ctx.fill(new Path2D(item.path))
     ctx.restore()
   } else {
-    ctx.font = `800 ${size * 0.6}px ${FONT}`
+    ctx.font = `800 ${size * (item.monogram.length > 3 ? 0.46 : 0.6)}px ${FONT}`
     ctx.textAlign = 'center'
     ctx.textBaseline = 'middle'
     ctx.fillText(item.monogram, cx, cy + 1)
   }
 }
 
-// Draws every tile into one canvas and returns the texture plus a geometry factory
-// whose UVs point at tile i inside it.
+// Draws every tile into one canvas and returns the texture plus where each tile sits in it.
 function drawAtlas(items) {
   const cellW = (TILE_W + 2 * PAD) * TEX_SCALE
   const cellH = (TILE_H + 2 * PAD) * TEX_SCALE
@@ -629,18 +687,9 @@ function drawAtlas(items) {
   })
   const texture = canvasTexture(canvas)
 
-  function geometry(i) {
-    const g = new PlaneGeometry(TILE_W + 2 * PAD, TILE_H + 2 * PAD)
-    const uv = g.attributes.uv
-    const col = i % cols
-    const row = Math.floor(i / cols)
-    for (let k = 0; k < uv.count; k++) {
-      uv.setXY(k, (col + uv.getX(k)) / cols, 1 - (row + 1 - uv.getY(k)) / rows)
-    }
-    return g
-  }
-
-  return { texture, geometry }
+  // [u offset, v offset, u size, v size] of tile i inside the atlas
+  const rects = items.map((_, i) => [(i % cols) / cols, 1 - (Math.floor(i / cols) + 1) / rows, 1 / cols, 1 / rows])
+  return { texture, rect: (i) => rects[i] }
 }
 
 function drawTile(ctx, item) {

@@ -31,15 +31,19 @@
 ## ✨ Features
 
 - **Instant on every device.** The profile card is plain HTML with inlined CSS, so it paints on the first round trip: the links are visible after only about **28 KB**.
-- **3D tech stack (WebGL).** 33 technologies float behind the card as a periodic table that morphs into a **sphere, helix or grid**. Drag to rotate, scroll to zoom.
+- **3D tech stack (WebGL).** 61 technologies float behind the card as a periodic table that morphs into a **sphere, helix or grid**. Drag to rotate, scroll to zoom.
 - **Hover a tile** and it lifts toward you, with a tooltip showing how many projects use it (the number is also on each tile's badge).
-- **Click a tile to build its house.** The other tiles drift away, the technology becomes the **foundation**, and every project, job or side project built with it **drops in as a floor**, topped by a roof with its logo. Click a floor to open the project; a side panel (bottom sheet on phones) lists everything. Close with ×, <kbd>Esc</kbd> or a click on empty space.
-- **Smooth.** One shared texture atlas and material for all tiles, a render loop that sleeps when nothing moves, shaders compiled in parallel before the first frame, and a lighter mode for devices without GPU acceleration. 60 fps on a laptop iGPU.
+- **Click a tile to build its house.** The other tiles drift away, the technology becomes the **foundation**, and every project, job or side project built with it **drops in as a floor**, topped by a roof with its logo. Floors that are public repos (or company sites) open on click; technologies used at work with no public repo get a plain "Work & research" floor. A side panel (bottom sheet on phones) lists everything. Close with ×, <kbd>Esc</kbd> or a click on empty space.
+- **Smooth.** All tiles are one `InstancedMesh` (a single draw call, sorted back to front each frame) using one texture atlas, a render loop that sleeps when nothing moves, shaders compiled in parallel before the first frame, and a lighter mode for devices without GPU acceleration. 60 fps on a laptop iGPU.
 - **Responsive.** Tested from 360 px Android phones to wide desktop screens, in portrait and landscape, with safe-area support for notched phones.
 - **Good link previews.** Open Graph and Twitter Card tags plus a 1200×630 preview image, so the link looks right on LinkedIn, X, WhatsApp, Slack and Discord. Also includes JSON-LD `Person` data for search engines.
 - **Accessible.** Semantic HTML, keyboard focus styles, 44 px+ touch targets, labels on every icon button, and a real HTML list of projects next to each 3D house.
 - **No fonts, no icon CDN, no trackers.** The only libraries are Three.js and Tween.js, loaded after the links.
 - **Auto-deploy** to GitHub Pages on every push (GitHub Actions).
+
+<p align="center">
+  <img src=".github/assets/stack.webp" alt="All 61 technology tiles in the 3D table, each with a project-count badge" width="72%"/>
+</p>
 
 <p align="center">
   <img src=".github/assets/house.webp" alt="The Hugging Face tile turned into a 3D house: foundation, seven project floors and a yellow roof, with the project list on the right" width="72%"/>
@@ -94,7 +98,7 @@ npm run preview   # serve the production build, http://localhost:4173
 2. **Meta tags:** update the `<title>`, `description`, `og:*` tags, `canonical` URL and the JSON-LD block at the top of `index.html`.
 3. **Photo and preview image:** replace `public/avatar-160.webp`, `public/avatar-320.webp` (square) and `public/og-image.jpg` (1200×630).
 4. **3D tiles:** edit `src/stack.js`. Import any icon from [Simple Icons](https://simpleicons.org/) (`siPython`, `siReact`, ...) or use a short text monogram like `'AWS'`.
-5. **Houses:** edit `src/projects.js`. Each entry has a `title`, `kind` (Repo / Work / Side project), `year`, `desc`, optional `url`, and the `tech` names it was built with. The first entries become the lowest floors; a house shows up to 7 floors and the panel lists all of them.
+5. **Houses:** edit `src/projects.js`. Each entry has a `title`, `kind` (Repo / Work / Side project / Experience), `year`, `desc`, optional `url` (no url = not clickable), and the `tech` names it was built with. The first entries become the lowest floors; a house shows up to 7 floors and the panel lists all of them.
 6. **Deploy:** push to GitHub, then go to **Settings → Pages → Source** and pick **GitHub Actions**. Since `base` is relative, the build also works as-is on Vercel, Netlify or Cloudflare Pages.
 
 ## ⚡ Why it is fast
@@ -106,7 +110,7 @@ The 2022 version shipped ~14 MB on first load: 150 full-size PNG logos (some 700
 | Downloaded before the links are visible | ~14 MB | **~28 KB** (3D loads afterwards, ~175 KB gzipped) |
 | Requests before the links are visible | 150+ | **3** |
 | 3D animation, laptop (Intel Iris Xe) | ~10–40 fps | **60 fps** |
-| 3D animation, slow phone (4× CPU throttling) | ~6–11 fps | **~30 fps** |
+| 3D animation, slow phone (4× CPU throttling) | ~6–11 fps | **~30–38 fps** |
 | Repository size (tracked files) | ~145 MB incl. `node_modules` | **< 350 KB** |
 
 > Lighthouse scores 100 for accessibility, best practices and SEO. Its performance score (≈60–70 on mobile) is lower than real-world speed because Lighthouse renders WebGL on the CPU without a GPU; the links themselves are visible in ~1.3 s on its slow-phone simulation.
