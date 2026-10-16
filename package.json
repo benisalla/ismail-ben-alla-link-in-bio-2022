@@ -1,7 +1,7 @@
 {
   "name": "ismail-ben-alla-link-in-bio",
   "version": "2.0.0",
-  "description": "A fast, mobile-friendly link-in-bio page with an interactive Three.js 3D tech-stack background. Built with Vite, zero frameworks.",
+  "description": "A fast, mobile-friendly link-in-bio page with an interactive WebGL 3D tech stack: click a technology and its projects stack up into a 3D house. Three.js + Vite, no framework.",
   "keywords": [
     "link-in-bio",
     "linktree-alternative",
@@ -10,13 +10,14 @@
     "portfolio",
     "threejs",
     "three.js",
-    "css3d",
+    "webgl",
     "3d",
     "vite",
     "javascript",
     "github-pages",
     "static-site",
-    "responsive"
+    "responsive",
+    "interactive-portfolio"
   ],
   "homepage": "https://benisalla.github.io/ismail-ben-alla-link-in-bio-2022/",
   "repository": {

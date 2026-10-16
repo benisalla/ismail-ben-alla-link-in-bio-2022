@@ -203,6 +203,50 @@ h1 {
   transform: scale(0.98);
 }
 
+.hint {
+  pointer-events: auto;
+  margin: 0;
+  padding: 0.55rem 1rem;
+  min-height: 44px;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.85rem;
+  text-align: center;
+  background: rgb(11 13 18 / 0.7);
+  border: 1px solid rgb(94 234 212 / 0.35);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.hint span {
+  color: var(--muted);
+}
+
+.hint span::before {
+  content: " · ";
+}
+
+.hint:hover {
+  background: rgb(94 234 212 / 0.12);
+  border-color: var(--accent);
+}
+
+.hint:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@media (max-width: 480px) {
+  .hint span {
+    display: block;
+  }
+
+  .hint span::before {
+    content: none;
+  }
+}
+
 .footer {
   padding: 0.3rem 0.8rem;
   color: var(--muted);
@@ -219,6 +263,7 @@ h1 {
 
 /* Explore mode hides the card so the 3D view is fully visible */
 body.explore .card,
+body.explore .hint,
 body.explore .footer {
   opacity: 0;
   transform: scale(0.96);
@@ -304,47 +349,208 @@ body.explore .footer {
   background: var(--border);
 }
 
-/* ---------- 3D tiles (created by scene.js) ---------- */
+/* ---------- 3D view: tooltip and house panel ---------- */
 
-.tile {
-  width: 120px;
-  height: 150px;
+#scene canvas {
+  display: block;
+  touch-action: none;
+}
+
+.tip {
+  position: fixed;
+  z-index: 4;
+  top: 0;
+  left: 0;
+  max-width: 260px;
+  padding: 0.45rem 0.7rem;
+  font-size: 0.85rem;
+  line-height: 1.35;
+  background: rgb(11 13 18 / 0.92);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.4);
+  pointer-events: none;
+}
+
+.tip small {
+  display: block;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+/* A house is open: the card steps aside, the panel lists the projects */
+body.house .card,
+body.house .hint,
+body.house .footer,
+body.house .toolbar {
+  opacity: 0;
+  transform: scale(0.96);
+  pointer-events: none;
+}
+
+body.house .toolbar {
+  visibility: hidden;
+}
+
+.house-panel {
+  --c: var(--accent);
+  position: fixed;
+  z-index: 3;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  background: color-mix(in srgb, var(--c) 22%, rgb(10 14 20 / 0.85));
-  border: 1px solid color-mix(in srgb, var(--c) 60%, transparent);
-  border-radius: 10px;
-  box-shadow: 0 0 14px color-mix(in srgb, var(--c) 45%, transparent);
-  color: #fff;
-  font-family: system-ui, sans-serif;
-  user-select: none;
+  background: rgb(13 16 23 / 0.94);
+  border: 1px solid var(--border);
+  box-shadow: 0 20px 60px rgb(0 0 0 / 0.5);
+  animation: panel-in 0.45s ease both;
+  /* Phones: bottom sheet */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-height: 44dvh;
+  border-radius: 20px 20px 0 0;
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
-.tile svg {
-  width: 54px;
-  height: 54px;
-  fill: #fff;
+.house-panel[hidden] {
+  display: none;
 }
 
-.tile .mono {
-  font-size: 30px;
-  font-weight: 800;
-  line-height: 54px;
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
 }
 
-.tile .name {
-  font-size: 13px;
-  font-weight: 600;
+.house-panel header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1rem 0.75rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  border-top: 3px solid var(--c);
+  border-radius: inherit;
 }
 
-.tile .cat {
-  font-size: 10px;
+.hp-kicker {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: rgb(255 255 255 / 0.6);
+}
+
+.hp-title {
+  margin: 0.1rem 0 0;
+  font-size: 1.35rem;
+  line-height: 1.2;
+}
+
+.hp-count {
+  margin: 0.15rem 0 0;
+  color: var(--c);
+  font-weight: 600;
+  font-size: 0.9rem;
+  filter: brightness(1.4);
+}
+
+.hp-close {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: rgb(255 255 255 / 0.05);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.hp-close svg {
+  width: 20px;
+  height: 20px;
+}
+
+.hp-close:hover {
+  background: rgb(255 255 255 / 0.12);
+}
+
+.hp-close:focus-visible {
+  outline: 2px solid var(--accent);
+}
+
+.hp-list {
+  margin: 0;
+  padding: 0.5rem 0.75rem 1rem;
+  list-style: none;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.hp-list li {
+  padding: 0.65rem 0.6rem;
+  border-radius: 12px;
+}
+
+.hp-list li + li {
+  border-top: 1px solid rgb(255 255 255 / 0.06);
+}
+
+.hp-name {
+  font-weight: 700;
+  color: var(--text);
+}
+
+a.hp-name {
+  text-decoration: none;
+}
+
+a.hp-name::after {
+  content: " ↗";
+  color: var(--muted);
+}
+
+a.hp-name:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.hp-meta {
+  display: block;
+  margin-top: 0.1rem;
+  color: var(--muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.hp-list p {
+  margin: 0.3rem 0 0;
+  color: #cbd5e1;
+  font-size: 0.88rem;
+}
+
+/* Wide screens: side panel on the right */
+@media (min-width: 900px) {
+  .house-panel {
+    left: auto;
+    top: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    width: 360px;
+    max-height: none;
+    border-radius: 20px;
+  }
+
+  @keyframes panel-in {
+    from {
+      opacity: 0;
+      transform: translateX(24px);
+    }
+  }
 }
 
 /* ---------- Small screens ---------- */

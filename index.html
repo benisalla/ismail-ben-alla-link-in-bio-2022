@@ -126,6 +126,8 @@
         </ul>
       </section>
 
+      <button type="button" class="hint" id="hint">✨ Explore my tech stack in 3D <span>tap a tile to see what I built with it</span></button>
+
       <footer class="footer">
         Built with <a href="https://threejs.org/" target="_blank" rel="noopener">Three.js</a> &amp;
         <a href="https://vite.dev/" target="_blank" rel="noopener">Vite</a> ·
@@ -144,6 +146,21 @@
       </nav>
     </main>
 
+
+    <!-- Opened when a technology is clicked in the 3D view (filled by src/scene.js) -->
+    <aside class="house-panel" id="house-panel" aria-label="Projects for the selected technology" hidden>
+      <header>
+        <div>
+          <p class="hp-kicker">Projects built with</p>
+          <h2 class="hp-title"></h2>
+          <p class="hp-count"></p>
+        </div>
+        <button type="button" class="hp-close" aria-label="Close and go back">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+        </button>
+      </header>
+      <ol class="hp-list"></ol>
+    </aside>
 
     <script type="module" src="./src/main.js"></script>
   </body>
