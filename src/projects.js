@@ -73,11 +73,11 @@ export const projects = [
 
   // ---- Open-source repos ----
   {
-    title: 'micro-tiny-gpt-from-scratch',
+    title: 'tiny-llm',
     kind: 'Repo',
     year: '2023',
-    desc: 'A small GPT language model built from scratch in PyTorch.',
-    url: GH + 'micro-tiny-gpt-from-scratch',
+    desc: 'A small LLM built from scratch in PyTorch: loads GPT-2, Llama, Qwen2 and Pythia weights, LoRA fine-tuning and a chatbot.',
+    url: GH + 'tiny-llm',
     tech: ['Python', 'PyTorch'],
   },
   {
