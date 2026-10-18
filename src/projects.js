@@ -89,11 +89,11 @@ export const projects = [
     tech: ['Python', 'PyTorch', 'Hugging Face', 'NumPy', 'Streamlit', 'CUDA'],
   },
   {
-    title: 'Tiny-ViT-Transformer-from-scratch',
+    title: 'vit-image-classifier',
     kind: 'Repo',
     year: '2024',
     desc: 'Vision Transformer (ViT) implemented from scratch for image classification.',
-    url: GH + 'Tiny-ViT-Transformer-from-scratch',
+    url: GH + 'vit-image-classifier',
     tech: ['Python', 'PyTorch', 'NumPy', 'scikit-learn', 'Streamlit'],
   },
   {
