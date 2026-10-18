@@ -121,11 +121,11 @@ export const projects = [
     tech: ['Python', 'PyTorch', 'Hugging Face', 'NumPy', 'pandas', 'scikit-learn', 'Streamlit', 'Jupyter'],
   },
   {
-    title: 'HR-LLM',
+    title: 'HR-Jev',
     kind: 'Repo',
     year: '2026',
     desc: 'Fine-tuned GPT-2 with four heads that predict attrition, job level, satisfaction and income.',
-    url: GH + 'hr-llm',
+    url: GH + 'hr-jev',
     tech: ['Python', 'PyTorch', 'Hugging Face', 'Gradio', 'pandas', 'NumPy', 'scikit-learn', 'Jupyter'],
   },
   {
