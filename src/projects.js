@@ -229,7 +229,7 @@ export const projects = [
     kind: 'Repo',
     year: '2026',
     desc: 'The page you are on: a WebGL 3D tech stack, built with Vite and deployed by GitHub Actions.',
-    url: GH + 'ismail-ben-alla-link-in-bio-2022',
+    url: GH + 'my-link-in-bio',
     tech: ['JavaScript', 'Three.js', 'Vite', 'GH Actions'],
   },
   {
@@ -325,7 +325,7 @@ export const projects = [
     kind: 'Repo',
     year: '2023',
     desc: 'Website for JEEF, the junior enterprise of ENSA Fès.',
-    url: GH + 'jeef-jeef-official-web-site',
+    url: GH + 'jeef-website',
     tech: ['HTML5', 'CSS', 'JavaScript'],
   },
   {

@@ -19,10 +19,10 @@
     "responsive",
     "interactive-portfolio"
   ],
-  "homepage": "https://benisalla.github.io/ismail-ben-alla-link-in-bio-2022/",
+  "homepage": "https://benisalla.github.io/my-link-in-bio/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/benisalla/ismail-ben-alla-link-in-bio-2022.git"
+    "url": "git+https://github.com/benisalla/my-link-in-bio.git"
   },
   "author": "Ismail Ben Alla",
   "private": true,

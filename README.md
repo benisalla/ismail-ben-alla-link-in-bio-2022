@@ -1,4 +1,4 @@
-<h1 align="center">Ismail Ben Alla · Link in Bio</h1>
+<h1 align="center">My Link in Bio</h1>
 
 <p align="center">
   A fast, mobile-friendly <b>link-in-bio page</b> (a self-hosted Linktree alternative)<br/>
@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <a href="https://benisalla.github.io/ismail-ben-alla-link-in-bio-2022/"><b>🌐 Live site</b></a>
+  <a href="https://benisalla.github.io/my-link-in-bio/"><b>🌐 Live site</b></a>
   ·
   <a href="#-run-it-locally">Run it locally</a>
   ·
@@ -15,7 +15,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/benisalla/ismail-ben-alla-link-in-bio-2022/actions/workflows/deploy.yml"><img alt="Deploy" src="https://github.com/benisalla/ismail-ben-alla-link-in-bio-2022/actions/workflows/deploy.yml/badge.svg"/></a>
+  <a href="https://github.com/benisalla/my-link-in-bio/actions/workflows/deploy.yml"><img alt="Deploy" src="https://github.com/benisalla/my-link-in-bio/actions/workflows/deploy.yml/badge.svg"/></a>
   <img alt="Lighthouse accessibility, best practices, SEO" src="https://img.shields.io/badge/A11y%20%C2%B7%20Best%20practices%20%C2%B7%20SEO-100-0cce6b"/>
   <img alt="Three.js" src="https://img.shields.io/badge/Three.js-r186-000000?logo=threedotjs"/>
   <img alt="Vite" src="https://img.shields.io/badge/Vite-8-9135FF?logo=vite&logoColor=white"/>
@@ -68,8 +68,8 @@
 Requires **Node.js 20.19+** (22 LTS recommended).
 
 ```bash
-git clone https://github.com/benisalla/ismail-ben-alla-link-in-bio-2022.git
-cd ismail-ben-alla-link-in-bio-2022
+git clone https://github.com/benisalla/my-link-in-bio.git
+cd my-link-in-bio
 npm install
 
 npm run dev       # dev server with hot reload, http://localhost:5173
