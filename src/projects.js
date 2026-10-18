@@ -81,11 +81,11 @@ export const projects = [
     tech: ['Python', 'PyTorch'],
   },
   {
-    title: 'BIA-IMG-Captioner',
+    title: 'Image Captioner',
     kind: 'Repo',
     year: '2026',
     desc: 'Image captioning: ViT or ResNet encoder + Transformer decoder, beam search, BLEU, multi-GPU training.',
-    url: GH + 'BIA-IMG-Captioner',
+    url: GH + 'image-captioner',
     tech: ['Python', 'PyTorch', 'Hugging Face', 'NumPy', 'Streamlit', 'CUDA'],
   },
   {
@@ -97,11 +97,11 @@ export const projects = [
     tech: ['Python', 'PyTorch', 'NumPy', 'scikit-learn', 'Streamlit'],
   },
   {
-    title: 'MGTLR',
+    title: 'MusicGen',
     kind: 'Repo',
     year: '2026',
     desc: 'Music generation in ABC notation: Transformer vs LSTM vs RNN, BPE tokenizer, all from scratch.',
-    url: GH + 'MGTLR',
+    url: GH + 'musicgen',
     tech: ['Python', 'PyTorch', 'Keras', 'NumPy', 'Streamlit'],
   },
   {
@@ -113,19 +113,19 @@ export const projects = [
     tech: ['Python', 'NumPy'],
   },
   {
-    title: 'BIA-Bilingual-Net',
+    title: 'Bilingual Net',
     kind: 'Repo',
     year: '2026',
     desc: 'Seq2seq Transformer for language-to-language translation.',
-    url: GH + 'BIA-Bilingual-Net',
+    url: GH + 'bilingual-net',
     tech: ['Python', 'PyTorch', 'Hugging Face', 'NumPy', 'pandas', 'scikit-learn', 'Streamlit', 'Jupyter'],
   },
   {
-    title: 'HR-GPT',
+    title: 'HR-LLM',
     kind: 'Repo',
     year: '2026',
     desc: 'Fine-tuned GPT-2 with four heads that predict attrition, job level, satisfaction and income.',
-    url: GH + 'HR-GPT',
+    url: GH + 'hr-llm',
     tech: ['Python', 'PyTorch', 'Hugging Face', 'Gradio', 'pandas', 'NumPy', 'scikit-learn', 'Jupyter'],
   },
   {
@@ -241,11 +241,11 @@ export const projects = [
     tech: ['React', 'Three.js', 'JavaScript'],
   },
   {
-    title: 'nlp-text-classification',
+    title: 'text-classification',
     kind: 'Repo',
     year: '2024',
     desc: 'Text classification with one-hot and GloVe embeddings, compared across frameworks.',
-    url: GH + 'nlp-text-classification',
+    url: GH + 'text-classification',
     tech: ['Python', 'PyTorch', 'Lightning', 'TensorFlow', 'Jupyter'],
   },
   {
